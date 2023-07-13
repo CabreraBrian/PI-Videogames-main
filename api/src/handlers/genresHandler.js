@@ -1,12 +1,12 @@
-require("dotenv").config();
-const axios = require("axios");
-const { genres } = require("../models/GenresModel");
-const { API_KEY } = process.env
-const URL = `https://api.rawg.io/api/genres?key=${API_KEY}`;
+const { getApiGenres } = require("../controllers/getApiGenres")
 
-const getGenres =  async () => {
-
+const getGenres = async (req, res) =>{
+    try {
+        const response = await getApiGenres();
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    };
 };
-
 
 module.exports = {getGenres};
