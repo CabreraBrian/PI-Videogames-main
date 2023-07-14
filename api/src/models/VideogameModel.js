@@ -1,4 +1,4 @@
-const { DataTypes, STRING } = require('sequelize');
+const { DataTypes } = require('sequelize');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     rating: {
-      type: DataTypes.STRING,
+      type: DataTypes.REAL,
       allowNull: false,
     },
     genres: {
