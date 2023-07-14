@@ -1,28 +1,16 @@
-const { api100games } = require("../utils/api100games")
-const { genresFiltered, platformsFiltered} = require("../utils/infoFilters")
+const { gamesCleaner } = require("../utils/gamesCleaner")
+const { api100Games } = require("../utils/apiVideogames")
 
-const { Videogames } = require("../db");
-
-
-const apiVideogamesCleaner = (apigames) =>{
-    apigames.map((game) => {
-        return {
-            name: game.name,
-            description: game.slug,
-            platforms: game.platforms,
-            image: game.background_image,
-            releaseDate: game.released,
-            rating: game.rating,
-            genres: game.genres,
-        }
-    })
-};
+const { Videogame } = require("../db");
 
 const getAllVideogames = async ()=>{
-    // const dbVideogames = await Videogames.findAll();
-    const apigames = api100games();
+    const dbGames = await Videogame.findAll();
+    const apiGames = await api100Games();
 
-    return apiGamesClean = apiVideogamesCleaner(apigames)
-}
+    apiGamesCleaned = gamesCleaner(apiGames)
+
+    allGames = [...dbGames, ...apiGamesCleaned]
+    return allGames;
+};
 
 module.exports = {getAllVideogames};

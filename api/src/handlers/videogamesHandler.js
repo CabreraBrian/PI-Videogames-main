@@ -4,9 +4,15 @@ const { findVideogameByName} = require ("../controllers/findVideogameByName");
 const { getAllVideogames} = require ("../controllers/getAllVideogames");
 
 const getVideogames = async (req, res) => {
+    const { name } = req.query;
     try {
-        const response = await getAllVideogames();
-        res.status(200).json(response)
+        if (name) {
+            const videogameByName = await findVideogameByName(name);
+            res.status(200).json(videogameByName);
+        } else {
+            const allVideogames = await getAllVideogames();
+            res.status(200).json(allVideogames);
+        }
     } catch (error) {
         res.status(400).json({error: error.message});
     }
@@ -24,10 +30,6 @@ const getVideogameById = async (req, res) => {
     }
 };
 
-const getVideogameByName = (req, res) => {
-    console.log("hola");
-};
-
 const postVideogame = async (req, res) => {
     const { name, description, platforms, image, releaseDate, rating, genres } = req.body;
     try {
@@ -39,4 +41,4 @@ const postVideogame = async (req, res) => {
     }
 };
 
-module.exports = {getVideogames, getVideogameById, getVideogameByName, postVideogame};
+module.exports = {getVideogames, getVideogameById, postVideogame};

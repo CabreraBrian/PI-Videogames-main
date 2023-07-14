@@ -3,7 +3,7 @@ const axios = require("axios");
 const { API_KEY } = process.env
 const URL = `https://api.rawg.io/api/games?key=`;
 
-const api100games = async () => {
+const api100Games = async () => {
     let games100 = [];
     let urlg = `${URL}${API_KEY}`;
     
@@ -12,7 +12,8 @@ const api100games = async () => {
         games100 = games100.concat(data.results)
         urlg = data.next;
     }
-    return games100;
-};
 
-module.exports = {api100games}
+    return games100;
+}
+
+module.exports = { api100Games }

@@ -1,31 +1,32 @@
-const { Videogames, Genres } = require("../db");
+const { Videogame, Genre } = require("../db");
 
-const createVideogame = async (name, description, platforms, image, releaseDate, rating, genres ) => {
-    const [gameCreated, created] = await Videogames.findOrCreate({
-        where: {name: name},
-        defaults: { 
-            name, 
-            description, 
-            platforms, 
-            image, 
-            releaseDate, 
+const createVideogame = async ( name, description, platforms, image, releaseDate, rating, genres ) => {
+    const [gameCreated, created] = await Videogame.findOrCreate({
+        where: { name: name },
+        defaults: {
+            name,
+            description,
+            platforms,
+            image,
+            releaseDate,
             rating,
-        },
+            genres
+        }
+    });
+    
+    genres.forEach(async (element) => {
+        const [dbGenre, created] = await Genre.findOrCreate({
+            where: { name: element },
+            defaults: { name: element }, 
+        });
+        await gameCreated.addGenre(dbGenre);
     });
 
-    genres.forEach(async (genre)=> {
-        const genreCreated = await Genres.findOrCreate({
-            where: { name: genre },
-            defaults: { name: genre }, 
-        });
-        // await gameCreated.addGenres(genreCreated);
-    })
-
     if (created) {
-        return gameCreated;
+        return gameCreated; 
     } else {
-        throw Error("El videojuego ya existe")
-    }    
+        throw Error("Videogame already exist")
+    }
 };
 
-module.exports = {createVideogame}
+module.exports = { createVideogame };
