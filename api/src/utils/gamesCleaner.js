@@ -1,13 +1,19 @@
 const oneApiGameCleaner = (game) => {
+
+    const getDescription = () => {
+        if (game.description_raw) return game.description_raw;
+        return game.slug;
+    }
+
     let GameCleaned = {
         id: game.id,
         name: game.name,
-        description: game.description_raw,
-        platforms: game.platforms.map(plat=>plat.platform.name),
+        description: getDescription(),
         image: game.background_image,
         releaseDate: game.released,
         rating: game.rating,
         genres: game.genres.map(genre=>genre.name),
+        platforms: game.platforms.map(plat=>plat.platform.name),
         created: false,
     };
     return GameCleaned;
@@ -21,12 +27,12 @@ const oneDbGameCleaner = (game) => {
     let dbGameCleaned = {
         id: game.id,
         name: game.name,
-        image: game.image,
         description: game.description,
-        platforms: game.Platforms.map((platform) => platform.name),
-        released: game.released,
+        image: game.image,
+        releasedDate: game.releaseDate,
         rating: game.rating,
         genres: game.Genres.map((genre) => genre.name),
+        platforms: game.Platforms.map((platform) => platform.name),
         created: game.created,
     };
     return dbGameCleaned;

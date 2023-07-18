@@ -1,21 +1,17 @@
 const { apiGamesCleaner, dbGamesCleaner} = require("../utils/gamesCleaner")
 const { api100Games } = require("../utils/apiVideogames")
-const { Sequelize } = require('sequelize');
+const { Op } = require('sequelize');
 
-const { Videogames } = require("../db");
+const { Videogames, Genres, Platforms } = require("../db");
 
 const findVideogameByName = async (name)=>{
 
-    name = name.toLowerCase()
-
     const dbGames = await Videogames.findAll({
-        where : {
+        where: {
             name: {
-                [Sequelize.Op.like]: `%${name.toLowerCase()}%`,
+                [Op.iLike]: `%${name.toLowerCase()}%`,
             }
-        }
-    },
-    {
+          },
         include: [
             {
                 model: Genres,
@@ -33,7 +29,7 @@ const findVideogameByName = async (name)=>{
     const dbGamesCleaned = dbGamesCleaner(dbGames)
 
     const apiGames = await api100Games();
-    const apiGamesFiltered = apiGames.filter((game) => game.name.toLowerCase().includes(name));
+    const apiGamesFiltered = apiGames.filter((game) => game.name.toLowerCase().includes(name.toLowerCase()));
     const apiGames15 = apiGamesFiltered.slice(0,15);
     const apiGamesCleaned = apiGamesCleaner(apiGames15)
 

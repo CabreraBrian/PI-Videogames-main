@@ -28,7 +28,9 @@ const findVideogameById = async (id, source) => {
     
     : (await axios.get(`${URL}/${id}?key=${API_KEY}`)).data;
 
-    source === "db" ? videogame = oneApiGameCleaner(game) : videogame = oneDbGameCleaner(game);
+    source === "db" 
+    ? videogame = oneDbGameCleaner(game)
+    : videogame = oneApiGameCleaner(game) 
 
     return videogame;
 };
