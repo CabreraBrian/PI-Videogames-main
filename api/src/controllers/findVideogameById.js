@@ -2,28 +2,35 @@ require("dotenv").config();
 const axios = require("axios");
 const { API_KEY } = process.env
 const URL = `https://api.rawg.io/api/games`;
-const { Videogame, Genre } = require("../db");
-const { genresFiltered, platformsFiltered } = require("../utils/infoFilters")
+const { Videogames, Genres, Platforms} = require("../db");
+const { oneApiGameCleaner, oneDbGameCleaner } = require("../utils/gamesCleaner")
 
 
 const findVideogameById = async (id, source) => {
-    let game = source === "db" 
-    ? await Videogame.findByPk(id)
+    let videogame = {};
 
-    : (await axios.get(`${URL}/${id}?key=${API_KEY}`)).data
+    const game = source === "db" 
+    ? 
+        await Videogames.findByPk(id, {
+        include: [
+            {
+              model: Genres,
+              attributes: ['name'],
+              through: { attributes: [] },
+            },
+            {
+              model: Platforms,
+              attributes: ['name'],
+              through: { attributes: [] },
+            },
+          ],
+        })
+    
+    : (await axios.get(`${URL}/${id}?key=${API_KEY}`)).data;
 
-    if (source === "api") {
-        game = {
-            name: game.name,
-            description: game.description_raw,
-            platforms: platformsFiltered(game.platforms),
-            image: game.background_image,
-            releaseDate: game.released,
-            rating: game.rating,
-            genres: genresFiltered(game.genres),
-        };
-    };
-    return game;
+    source === "db" ? videogame = oneApiGameCleaner(game) : videogame = oneDbGameCleaner(game);
+
+    return videogame;
 };
 
 module.exports = {findVideogameById};

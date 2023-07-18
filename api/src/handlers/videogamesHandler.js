@@ -2,6 +2,7 @@ const { createVideogame } = require ("../controllers/createVideogame");
 const { findVideogameById} = require ("../controllers/findVideogameById");
 const { findVideogameByName} = require ("../controllers/findVideogameByName");
 const { getAllVideogames} = require ("../controllers/getAllVideogames");
+const { destroyVideogame } = require ("../controllers/destroyVideogame")
 
 const getVideogames = async (req, res) => {
     const { name } = req.query;
@@ -41,4 +42,14 @@ const postVideogame = async (req, res) => {
     }
 };
 
-module.exports = {getVideogames, getVideogameById, postVideogame};
+const deleteVideogame =async (req, res) => {
+    const {id} = req.params;
+    try {
+        await destroyVideogame(id)
+        res.status(200).json("Videojuego eliminado")
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+}
+
+module.exports = {getVideogames, getVideogameById, postVideogame, deleteVideogame};
