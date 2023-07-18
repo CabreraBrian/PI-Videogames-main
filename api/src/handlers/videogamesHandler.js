@@ -32,10 +32,10 @@ const getVideogameById = async (req, res) => {
 };
 
 const postVideogame = async (req, res) => {
-    const { name, description, platforms, image, releaseDate, rating, genres } = req.body;
+    const { name, description, platforms, releaseDate, rating, genres } = req.body;
     try {
-        if(!name || !description || !platforms || !image || !releaseDate || !rating || !genres) return res.status(401).send("Faltan datos");
-        const videogame = await createVideogame(name, description, platforms, image, releaseDate, rating, genres);
+        if(!name || !description || !platforms || !releaseDate || !rating || !genres) return res.status(401).send("Faltan datos");
+        const videogame = await createVideogame(name, description, platforms, releaseDate, rating, genres);
         res.status(200).json(videogame)
     } catch (error) {
         res.status(400).json({error: error.message});

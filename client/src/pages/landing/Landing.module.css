@@ -5,12 +5,120 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-image: "";
     text-align: center;
+    color: black;
 }
 
-.landing {
+video{
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contenedor{
+  color:azure;
+  top: 0;
+  left: 0;
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.363);
 }
+
+.contenedor_secundario{
+  padding: 1vw;
+  border-radius: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80%;
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.363);
+  justify-content: center;
+}
+
+.contenedor_terciario{
+  width: 100%;
+  height: 100%;
+}
+
+.butonBar{
+  height: max-content;
+  width: 100%;
+  display: flex;
+  align-items:center;
+  justify-content: space-around;
+
+}
+
+.marioG{
+  width: 30vw;
+}
+
+.sonic{
+  padding-left: 2vw;
+  padding-right: 2vw;
+  width: 6vw;
+}
+
+.mario{
+  width: 10vw;
+}
+
+.texto{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botonEntrar {
+  border: 0px;
+  -webkit-border-radius: 15;
+  -moz-border-radius: 15;
+  border-radius: 15px;
+  color: #000000;
+  font-size: 20px;
+  padding: 20px;
+  background: #FFB703;
+  text-decoration: none;
+}
+
+.botonEntrar:hover {
+  background: #FB8500;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .content{
+  flex-direction: column;
+  }
+  .texto{
+    flex-direction: column;
+  }
+  .marioG{
+    width: 50vw;
+  }
+}
+
+
+
+
+
+

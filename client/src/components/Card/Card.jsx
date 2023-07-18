@@ -1,8 +1,15 @@
-import "./Card.module.css"
+import style from "./Card.module.css"
+import { Link } from 'react-router-dom';
 
-const Card = () => {
+
+const Card = ({id, name, description, image, releaseDate, rating, genres, platforms, created}) => {
   return (
-    <div>Card</div>
+    <Link to={`/detail/${id}`}>
+      <div className= {style.contenedor}>
+        <img src={image} alt="game-image"/>
+        <h1>{name}</h1>
+      </div>
+    </Link>
   )
 }
 
