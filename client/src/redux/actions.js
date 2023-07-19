@@ -10,6 +10,7 @@ export const GAME_ORIGIN = "GAME_ORIGIN";
 export const ORDER_GAMES = "ORDER_GAMES";
 export const GAME_GENRE = "GAME_GENRE";
 export const GAME_PLATFORM = "GAME_PLATFORM";
+export const CLEAR_GAMES = "CLEAR_GAMES"
 
 
 export const getAllGenres = () => {
@@ -95,3 +96,9 @@ export const filterGamsByPlatform = (payload) => {
         payload
     }
 }
+
+export const clearGames = () => {
+    return { 
+        type: CLEAR_GAMES
+    }
+};

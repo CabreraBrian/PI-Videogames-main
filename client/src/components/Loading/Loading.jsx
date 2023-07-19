@@ -1,10 +1,10 @@
 import style from "./Loading.module.css"
-import gif from '../../assets/loading.gif'
+import gif from "../../assets/loading.gif"
 
 const Loading = () => {
   return (
     <div className={style.contenedor}>
-      <img src={gif}alt='loading'/>
+      <img src={gif}alt="loading"/>
     </div>
   )
 }

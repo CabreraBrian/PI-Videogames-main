@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getAllGenres,getAllPlatforms,getAllGames,filterGamesByOrigin,orderGames,filterGamesByGender,filterGamsByPlatform} from "../../redux/actions";
+import {getAllGenres,getAllPlatforms,getAllGames,filterGamesByOrigin,orderGames,filterGamesByGender,filterGamsByPlatform, clearGames} from "../../redux/actions";
 
 import style from "./Home.module.css";
 import videoBg from "../../assets/videoBg.mp4";
@@ -14,21 +14,22 @@ const Home = () => {
     dispatch(getAllGames());
     dispatch(getAllGenres());
     dispatch(getAllPlatforms());
+    return (()=> dispatch(clearGames()))
   }, [dispatch]);
 
   const allGames = useSelector((state) => state.allGamesCopy);
   const allPlatforms = useSelector((state) => state.allPlatforms);
   const allGenres = useSelector((state) => state.allGenres);
 
-  const [paginaActual, setPaginaActual] = useState(1);
-  const juegosPorPagina = 20;
+  const [currentPage, setCurrentPage] = useState(1);
+  const gamesForPage = 20;
 
-  const indexUltimoGame = paginaActual * juegosPorPagina;
-  const indexPrimerGame = indexUltimoGame - juegosPorPagina;
+  const lastGameIndex = currentPage * gamesForPage;
+  const fisrtGameIndex = lastGameIndex - gamesForPage;
 
-  const juegos = allGames.slice(indexPrimerGame, indexUltimoGame);
+  const juegos = allGames.slice(fisrtGameIndex, lastGameIndex);
 
-  const paginate = (numeroPagina) => setPaginaActual(numeroPagina);
+  const paginate = (numeroPagina) => setCurrentPage(numeroPagina);
 
   const originFilter = (event) => {
     dispatch(filterGamesByOrigin(event.target.value))
@@ -53,7 +54,7 @@ const Home = () => {
         <NavBar />
         <div>
           <select onChange={orderFilter}>
-            <option key='id' value='id'> Orden Predeterminado </option>
+            <option key='predef' value='predef'> Orden Predeterminado </option>
             <option key='ascendingName' value='ascendingName'>Ordenar por nombre A-Z </option>
             <option key='descendingName' value='descendingName'>Ordenar por nombre Z-A </option>
           </select>
@@ -76,7 +77,7 @@ const Home = () => {
         </div>
 
         <div className= {style.paginate}>
-          {allGames.length > juegosPorPagina && Array(Math.ceil(allGames.length / juegosPorPagina)).fill().map((_, index) => (
+          {allGames.length > gamesForPage && Array(Math.ceil(allGames.length / gamesForPage)).fill().map((_, index) => (
                 <button key={index} onClick={() => paginate(index + 1)}>
                   {index + 1}
                 </button>

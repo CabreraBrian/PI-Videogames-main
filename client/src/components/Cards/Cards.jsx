@@ -1,9 +1,8 @@
 import style from "./Cards.module.css"
 import Card from "../Card/Card.jsx"
-import Loading from "../Loading/Loading";
+import LoadingG from "../LoadingG/LoadingG";
 
 const Cards = ({allGames}) => {
-
 
     const gamesList = allGames
     return (
@@ -11,21 +10,24 @@ const Cards = ({allGames}) => {
             {
                 gamesList.length 
                 ? gamesList.map((game) => {
-                    return (
-                        <Card
-                        key={game.id}
-                        id={game.id}
-                        name={game.name}
-                        description={game.description} 
-                        image={game.image} 
-                        releaseDate={game.releaseDate} 
-                        rating={game.rating} 
-                        genres={game.genres} 
-                        platforms={game.platforms} 
-                        created={game.created}
-                        />
-                    )
-                }):<Loading/>
+                    if (game.id && game.name) {
+                        return (
+                            <Card key={game.id} 
+                            id={game.id} 
+                            name={game.name} 
+                            description={game.description} 
+                            image={game.image} 
+                            releaseDate={game.releaseDate} 
+                            rating={game.rating} 
+                            genres={game.genres} 
+                            platforms={game.platforms} 
+                            created={game.created}
+                            />
+                            )
+                    } else {
+                        return <h2> {gamesList[0]} </h2>
+                    }
+                }):<LoadingG/>
             }
         </div>
     );

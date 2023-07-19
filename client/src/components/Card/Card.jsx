@@ -2,14 +2,14 @@ import style from "./Card.module.css"
 import { Link } from 'react-router-dom';
 
 
-const Card = ({id, name, description, image, releaseDate, rating, genres, platforms, created}) => {
+const Card = (params) => {
   return (
     <div className= {style.contenedor}>
-        <Link to={`/detail/${id}`}>
-          <img src={image} alt="game-image"/>
-        </Link>
-        <h1>{name}</h1>
-      </div>
+    <Link to={`/detail/${params.id}`}>
+      <img src={params.image} alt="game"/>
+    </Link>
+    <h1>{params.name}</h1>
+    </div>
   )
 }
 

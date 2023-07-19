@@ -1,4 +1,16 @@
-import { GET_ALLGAMES, GET_ALLGENRES, GET_ALLPLATFORMS, GET_DETAIL, CLEAR_DETAIL, GET_GAMEBYNAME, ORDER_GAMES, GAME_GENRE, GAME_ORIGIN, GAME_PLATFORM } from "./actions"
+import { 
+    GET_ALLGAMES, 
+    GET_ALLGENRES, 
+    GET_ALLPLATFORMS, 
+    GET_DETAIL, 
+    CLEAR_DETAIL, 
+    GET_GAMEBYNAME, 
+    ORDER_GAMES, 
+    GAME_GENRE, 
+    GAME_ORIGIN, 
+    GAME_PLATFORM, 
+    CLEAR_GAMES
+} from "./actions"
 
 let initialState = { 
     allGames:[],
@@ -47,51 +59,50 @@ const reducer = (state = initialState, action) => {
                 gameDetail: {}
             }
 
-        default: 
-        return { ...state };
-
+        case CLEAR_GAMES:
+            return{
+                ...state,
+                allGames: [],
+                allGamesCopy: [],
+            }
+            
         case ORDER_GAMES:
-            {let allgame = [...state.allGames]
-              let sortedGames
-              switch (action.payload) {
-                  case 'id':
-                  sortedGames = [
-                      ...allgame.filter((item) => typeof item.id === 'number').sort((a, b) => a.id - b.id),
-                      ...allgame.filter((item) => typeof item.id !== 'number').sort((a, b) => a.id.localeCompare(b.id))
-                  ]
-                  break
-                  case 'ascendingName':
-                    sortedGames = allgame.sort((a, b) => a.name.localeCompare(b.name))
-                    break
-                  case 'descendingName':
-                    sortedGames = allgame.sort((a, b) => b.name.localeCompare(a.name))
-                    break
-                  default:
-                    sortedGames = allgame
-                }
-            return { ...state, allGamesCopy: sortedGames }}
+            const allGamesForOrder = [...state.allGames]
+            let orderGames = action.payload === "predef"
+            ? allGamesForOrder 
+            : action.payload === "ascendingName" 
+            ? allGamesForOrder.sort((a, b) => a.name.localeCompare(b.name)) 
+            : allGamesForOrder.sort ((a, b) => b.name.localeCompare(a.name))
+            return { ...state, allGamesCopy: orderGames}
 
         case GAME_GENRE:
-            const allGames = [...state.allGames];
-            let filteredGames = action.payload === 'all' ? allGames : allGames.filter(item => item.genres && item.genres.includes(action.payload));
-            !filteredGames.length && (filteredGames = ["No hay juegos con ese genero"]);
-            return { ...state, allGamesCopy: filteredGames };
+            const allGamesForGenre = [...state.allGames];
+            let filteredForGenre = action.payload === 'all' 
+            ? allGamesForGenre 
+            : allGamesForGenre.filter(game => game.genres.includes(action.payload));//&& item.genres.includes(action.payload)
+            !filteredForGenre.length && (filteredForGenre = ["No hay juegos con ese genero"]);
+            return { ...state, allGamesCopy: filteredForGenre };
 
-         case GAME_PLATFORM:
-            const allGamess = [...state.allGames]
-            let filteredGamess = action.payload === 'all'? allGamess: allGamess.filter((item) => item.platforms && item.platforms.includes(action.payload))
-            !filteredGamess.length && (filteredGamess = ['No hay juegos con esa plataforma'])
-            return {...state, allGamesCopy: filteredGamess}
+        case GAME_PLATFORM:
+            const allGamesForPlatform = [...state.allGames]
+            let filteredForPlatform = action.payload === 'all'
+            ? allGamesForPlatform
+            : allGamesForPlatform.filter((game) => game.platforms.includes(action.payload));
+            !filteredForPlatform.length && (filteredForPlatform = ['No hay juegos con esa plataforma'])
+            return {...state, allGamesCopy: filteredForPlatform}
 
         case GAME_ORIGIN:
-            const allggames = [...state.allGames];
-            let originFilter = 
+            const allGamesForOrigin = [...state.allGames];
+            let FilteredForOrigin = 
             action.payload === 'all' 
-            ? allggames 
+            ? allGamesForOrigin
             : action.payload === 'database' 
-            ? allggames.filter(item => item.created === true) 
-            : allggames.filter(item => item.created === false)
-            return { ...state, allGamesCopy: originFilter }  
+            ? allGamesForOrigin.filter(item => item.created === true) 
+            : allGamesForOrigin.filter(item => item.created === false)
+            return { ...state, allGamesCopy: FilteredForOrigin }
+
+        default: 
+        return { ...state };
 
     };
 };
