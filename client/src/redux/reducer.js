@@ -89,8 +89,8 @@ const reducer = (state = initialState, action) => {
             action.payload === 'all' 
             ? allggames 
             : action.payload === 'database' 
-            ? allggames.filter(item => item.created == true) 
-            : allggames.filter(item => item.created == false)
+            ? allggames.filter(item => item.created === true) 
+            : allggames.filter(item => item.created === false)
             return { ...state, allGamesCopy: originFilter }  
 
     };
