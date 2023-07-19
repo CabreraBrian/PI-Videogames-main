@@ -1,13 +1,12 @@
 .contenedor {
+    background-color: #023047;
     width: 15vw;
     height: fit-content;
     box-shadow: 0px 0px 7px 3px rgb(255, 238, 0);
     -webkit-box-shadow: 0px 0px 7px 3px rgb(255, 238, 0);
     -moz-box-shadow: 0px 0px 7px 3px rgb(255, 238, 0);
-    padding: 10px;
+    padding: 1vw;
     margin: 1em;
-    background-repeat: no-repeat;
-    background-size: 100%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -15,8 +14,8 @@
 }
 
 .contenedor:hover{
-    width: 16vw;
-    margin: 0.5vw;
+    width: 15.5vw;
+    margin: 0vw;
     box-shadow: 0px 0px 7px 3px rgb(62, 59, 233);
     -webkit-box-shadow: 0px 0px 7px 3px rgb(62, 59, 233);
     -moz-box-shadow: 0px 0px 7px 3px rgb(62, 59, 233);
@@ -24,7 +23,7 @@
 
 .contenedor h1{
     font-size: 85%;
-    color: black;
+    color:azure;
 }
 
 .contenedor img{
@@ -38,7 +37,6 @@
 @media screen and (max-width: 1000px) {
     .contenedor{
         width: 20vw;
-        height: fit-content;
     }
     .contenedor:hover{
         width: 21vw;

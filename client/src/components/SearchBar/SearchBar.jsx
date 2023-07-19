@@ -1,13 +1,42 @@
-// import style from './SearchBar.module.css'
+import { useDispatch } from 'react-redux';
+import style from './SearchBar.module.css'
+import { useState } from 'react';
+import { getGameByName } from '../../redux/actions';
 
-// const SearchBar= ({onSearch}) => {
+const SearchBar= () => {
+   const dispatch = useDispatch()
+   const [name, setName] = useState("");
 
-//    return (
-//       <div className={style.contenedor}>
-//          <input type='search' name='input' placeholder="Escriba el nombre aqui. . ." onChange={handleChange} value={id}></input>
-//          <button onClick={()=>{onSearch()}} className={style.searchButton}>Agregar</button>
-//       </div>
-//    );
-// }
+   const handleInputChange = (event) => {
+      event.preventDefault()
+      setName(event.target.value)
+    }
+    const handleSubmit = (event) => {
+      event.preventDefault()
+      dispatch(getGameByName(name))
+      setName('')
+    }
 
-// export default SearchBar;
+   return (
+      <div className={style.contenedor}>
+         <input 
+         type='text' 
+         placeholder="Busque un juego aqui"
+         onChange={(event) => handleInputChange(event)}
+         // onKeyDown={(event) => handleKeyDown(event)}
+         value={name}
+         ></input>
+
+         <button
+         type='search'
+         onClick={(event) => handleSubmit(event)}
+         >Buscar</button>
+         <button 
+         type="submit"
+         onClick={(event)=> handleSubmit(event)}
+         > X </button>
+      </div>
+   );
+}
+
+export default SearchBar;

@@ -1,13 +1,16 @@
 import style from "./Cards.module.css"
 import Card from "../Card/Card.jsx"
+import Loading from "../Loading/Loading";
 
 const Cards = ({allGames}) => {
+
 
     const gamesList = allGames
     return (
         <div className= {style.contenedor}>
             {
-                gamesList?.map((game) => {
+                gamesList.length 
+                ? gamesList.map((game) => {
                     return (
                         <Card
                         key={game.id}
@@ -22,7 +25,7 @@ const Cards = ({allGames}) => {
                         created={game.created}
                         />
                     )
-                })
+                }):<Loading/>
             }
         </div>
     );

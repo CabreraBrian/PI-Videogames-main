@@ -21,7 +21,14 @@ const getApiPlatforms =  async () => {
         });
     })
 
-    return apiPlatforms;
+    if (apiPlatforms.length) {
+        return apiPlatforms
+    } else {
+        const apiPlatformsFinal = await Platforms.findAll()
+
+        return apiPlatformsFinal.map(plat=> plat.name)
+    }
+
 };
 
 
