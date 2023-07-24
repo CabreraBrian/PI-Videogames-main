@@ -1,6 +1,6 @@
 import style from "./Cards.module.css"
 import Card from "../Card/Card.jsx"
-import LoadingG from "../LoadingG/LoadingG";
+import Loading from "../Loading/Loading";
 
 const Cards = ({allGames}) => {
 
@@ -27,7 +27,7 @@ const Cards = ({allGames}) => {
                     } else {
                         return <h2> {gamesList[0]} </h2>
                     }
-                }):<LoadingG/>
+                }):<Loading/>
             }
         </div>
     );

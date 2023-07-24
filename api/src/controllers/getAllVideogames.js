@@ -18,13 +18,12 @@ const getAllVideogames = async ()=>{
           },
         ],
     });
-
     const dbGamesCleaned = dbGamesCleaner(dbGames)
 
     const apiGames = await api100Games();
     const apiGamesCleaned = apiGamesCleaner(apiGames);
 
-    allGames = [...dbGamesCleaned, ...apiGamesCleaned];
+    allGames = [...apiGamesCleaned, ...dbGamesCleaned];
     return allGames;
 };
 

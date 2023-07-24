@@ -29,7 +29,7 @@ const oneDbGameCleaner = (game) => {
         name: game.name,
         description: game.description,
         image: game.image,
-        releasedDate: game.releaseDate,
+        releaseDate: game.releaseDate,
         rating: game.rating,
         genres: game.Genres.map((genre) => genre.name),
         platforms: game.Platforms.map((platform) => platform.name),

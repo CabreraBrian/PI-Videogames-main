@@ -1,46 +1,58 @@
 .contenedor {
-    background-color: #023047;
-    width: 15vw;
-    height: fit-content;
-    box-shadow: 0px 0px 7px 3px rgb(255, 238, 0);
-    -webkit-box-shadow: 0px 0px 7px 3px rgb(255, 238, 0);
-    -moz-box-shadow: 0px 0px 7px 3px rgb(255, 238, 0);
-    padding: 1vw;
+    background-color: #00000096;
+    width: 10em;
+    height: 15em;
+    padding: 1em;
     margin: 1em;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     transition: 0.1s;
+    border: 0px;
 }
 
 .contenedor:hover{
-    width: 15.5vw;
-    margin: 0vw;
-    box-shadow: 0px 0px 7px 3px rgb(62, 59, 233);
-    -webkit-box-shadow: 0px 0px 7px 3px rgb(62, 59, 233);
-    -moz-box-shadow: 0px 0px 7px 3px rgb(62, 59, 233);
+    width: 11em;
+    height: 16em;
+    margin: 0.5em;
+    box-shadow: 0px 0px 7px 3px rgb(0, 255, 213);
+    -webkit-box-shadow: 0px 0px 7px 3px rgb(0, 255, 213);
+    -moz-box-shadow: 0px 0px 7px 3px rgb(0, 255, 213);
 }
 
-.contenedor h1{
+.contenedor h5{
+    margin: 15px;
     font-size: 85%;
     color:azure;
 }
 
 .contenedor img{
+    border: 0px;
     width: 100%;
-    height: 10vw;
-    border: 1px solid black;
+    height: 6em;
     border-radius: 15px;
     margin-bottom: 0%;
 }
 
-@media screen and (max-width: 1000px) {
+.close{
+    padding: 5px;
+    border: 0px;
+    border-radius: 20px;
+    color: #023047;
+    font-size: 15px;
+    background: #FFB703;
+  }
+    
+  .close:hover {
+    background: #fb0000;
+  }
+
+@media screen and (max-width: 900px) {
     .contenedor{
-        width: 20vw;
+        margin: 0.5em;
     }
     .contenedor:hover{
-        width: 21vw;
-        margin: 0.5vw;
+        margin: 0em;
     }
     
 }

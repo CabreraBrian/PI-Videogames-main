@@ -2,12 +2,13 @@ const { Videogames, Genres, Platforms } = require("../db");
 
 const createVideogame = async ( name, description, platforms, releaseDate, rating, genres ) => {
     const [gameCreated, created] = await Videogames.findOrCreate({
-        where: { 
-            name, 
+        where: { name },
+        defaults : {
             description, 
             image:"https://img1.freepng.es/20180325/gee/kisspng-playstation-4-joystick-playstation-3-game-controll-joystick-5ab72ee27a7e67.6136780815219545305017.jpg", 
             releaseDate, 
-            rating },
+            rating 
+        }
     });
 
     const genresInDb = await Genres.findAll({ where: { name: genres } });

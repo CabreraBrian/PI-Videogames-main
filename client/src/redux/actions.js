@@ -11,6 +11,8 @@ export const ORDER_GAMES = "ORDER_GAMES";
 export const GAME_GENRE = "GAME_GENRE";
 export const GAME_PLATFORM = "GAME_PLATFORM";
 export const CLEAR_GAMES = "CLEAR_GAMES"
+export const GET_INDIE_PLATAFORMAS = "GET_INDIE_PLATAFORMAS"
+export const DELETE_GAME = "DELETE_GAME";
 
 
 export const getAllGenres = () => {
@@ -63,6 +65,13 @@ export const getGameByName = (name) => {
     };
 };
 
+export const deleteGame = (id) => {
+    return async (dispatch) => {
+        await axios.delete(`http://localhost:3001/videogames/${id}`)
+      dispatch({ type: DELETE_GAME, payload: id })
+    }
+}
+
 export const clearDetail = () => {
     return { 
         type: CLEAR_DETAIL 
@@ -102,3 +111,9 @@ export const clearGames = () => {
         type: CLEAR_GAMES
     }
 };
+
+export const getIndieAndPlatforms = () => {
+    return {
+        type: GET_INDIE_PLATAFORMAS
+    }
+}

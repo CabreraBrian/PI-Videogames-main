@@ -1,20 +1,3 @@
-.home {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* video{
-  top: 0;
-  left: 0;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-} */
-
 .contenedor{
   color:azure;
   top: 0;
@@ -27,15 +10,32 @@
   align-items: center;
 }
 
+.filtros{
+  width: 100%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content:center;
+  background-color: rgba(0, 0, 0, 0.39);
+}
+
+.filtros span{
+  margin: 10px;
+}
+
 .paginate{
   margin: 10px;
 }
 
 .paginate button{
-    border-radius:100%;
+  margin: 2px;
+    border-radius:5px;
     color: #023047;
     font-size: 25px;
     background: #FFB703;
+    border: 0px;
   }
   
   .paginate button:hover {

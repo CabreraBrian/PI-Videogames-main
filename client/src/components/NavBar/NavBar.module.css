@@ -1,7 +1,6 @@
 .navBar{
     color:azure;
     width: 100%;
-    height: 50px;
     top: 0;
     left: 0;
     position: relative;
@@ -9,16 +8,23 @@
     flex-direction: row;
     align-items:center;
     justify-content:space-around;
-    background-color: rgba(0, 0, 0, 0.363);
-  }
+    background-color: rgba(0, 0, 0, 0.39);
+}
 
-.navBar button{
-    border-radius:5px;
-    color: #023047;
-    font-size: 20px;
-    background: #FFB703;
+.levelUp{
+  width: 100px;
+}
+
+.boton{
+  border: 0;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 20px;
+  color: #023047;
+  font-size: 20px;
+  background: #FFB703;
   }
   
-.navBar button:hover {
+.boton:hover {
   background: #FB8500;
 }

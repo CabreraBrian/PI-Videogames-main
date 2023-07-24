@@ -41,7 +41,7 @@ video{
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 80%;
+  height: 85%;
   width: 80%;
   background-color: rgba(0, 0, 0, 0.363);
   justify-content: center;
@@ -105,9 +105,18 @@ video{
   text-decoration: none;
 }
 
+.levelUp{
+  height: 100px;
+}
+
 @media screen and (max-width: 1000px) {
   .content{
   flex-direction: column;
+  }
+
+  .contenedor_secundario{
+    height: 96%;
+    justify-content: start;
   }
   .texto{
     flex-direction: column;

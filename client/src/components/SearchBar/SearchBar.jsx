@@ -17,24 +17,32 @@ const SearchBar= () => {
       setName('')
     }
 
+    const handleReset = ()=>{
+      dispatch(getGameByName(""))
+    }
+
    return (
       <div className={style.contenedor}>
-         <input 
+
+         <input
          type='text' 
          placeholder="Busque un juego aqui"
-         onChange={(event) => handleInputChange(event)}
-         // onKeyDown={(event) => handleKeyDown(event)}
+         onChange={(event) => handleInputChange(event) }
          value={name}
          ></input>
 
          <button
+         className={style.boton}
          type='search'
          onClick={(event) => handleSubmit(event)}
          >Buscar</button>
+
          <button 
+         className={style.reset}
          type="submit"
-         onClick={(event)=> handleSubmit(event)}
+         onClick={()=> handleReset()}
          > X </button>
+
       </div>
    );
 }

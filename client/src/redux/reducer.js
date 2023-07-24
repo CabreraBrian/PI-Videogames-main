@@ -9,7 +9,9 @@ import {
     GAME_GENRE, 
     GAME_ORIGIN, 
     GAME_PLATFORM, 
-    CLEAR_GAMES
+    CLEAR_GAMES,
+    GET_INDIE_PLATAFORMAS,
+    DELETE_GAME
 } from "./actions"
 
 let initialState = { 
@@ -65,12 +67,18 @@ const reducer = (state = initialState, action) => {
                 allGames: [],
                 allGamesCopy: [],
             }
+
+        case DELETE_GAME:
+            return{
+                ...state,
+                allGames: state.allGames.filter((game)=> game.id !== action.payload),
+                allGamesCopy: state.allGamesCopy.filter((game)=> game.id !== action.payload),
+                
+            }
             
         case ORDER_GAMES:
-            const allGamesForOrder = [...state.allGames]
-            let orderGames = action.payload === "predef"
-            ? allGamesForOrder 
-            : action.payload === "ascendingName" 
+            const allGamesForOrder = [...state.allGamesCopy];
+            let orderGames = action.payload === "ascendingName" 
             ? allGamesForOrder.sort((a, b) => a.name.localeCompare(b.name)) 
             : allGamesForOrder.sort ((a, b) => b.name.localeCompare(a.name))
             return { ...state, allGamesCopy: orderGames}
@@ -99,7 +107,13 @@ const reducer = (state = initialState, action) => {
             : action.payload === 'database' 
             ? allGamesForOrigin.filter(item => item.created === true) 
             : allGamesForOrigin.filter(item => item.created === false)
+            !FilteredForOrigin.length && (FilteredForOrigin = ["No hay juegos con ese origen"])
             return { ...state, allGamesCopy: FilteredForOrigin }
+
+        case GET_INDIE_PLATAFORMAS:
+            const allGamess = [...state.allGames];
+            let indieAndPlatformers = [...allGamess.filter(game => game.genres.includes("Indie"), ...allGamess.filter(game => game.genres.includes("Platformer")))]
+            return {...state, allGamesCopy: indieAndPlatformers}
 
         default: 
         return { ...state };

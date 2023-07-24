@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getAllGenres,getAllPlatforms,getAllGames,filterGamesByOrigin,orderGames,filterGamesByGender,filterGamsByPlatform, clearGames} from "../../redux/actions";
+import {getAllGenres,getAllPlatforms,getAllGames,filterGamesByOrigin,orderGames,filterGamesByGender,filterGamsByPlatform} from "../../redux/actions";
 
 import style from "./Home.module.css";
 import videoBg from "../../assets/videoBg.mp4";
@@ -14,7 +14,6 @@ const Home = () => {
     dispatch(getAllGames());
     dispatch(getAllGenres());
     dispatch(getAllPlatforms());
-    return (()=> dispatch(clearGames()))
   }, [dispatch]);
 
   const allGames = useSelector((state) => state.allGamesCopy);
@@ -33,18 +32,25 @@ const Home = () => {
 
   const originFilter = (event) => {
     dispatch(filterGamesByOrigin(event.target.value))
+    setCurrentPage(1)
   }
 
   const orderFilter = (event) => {
     dispatch(orderGames(event.target.value))
+    setCurrentPage(1)
+
   }
 
   const genderFilter = (event) => {
     dispatch(filterGamesByGender(event.target.value))
+    setCurrentPage(1)
+
   }
 
   const platformsFilter = (event) => {
     dispatch(filterGamsByPlatform(event.target.value))
+    setCurrentPage(1)
+
   }
 
   return (
@@ -52,28 +58,41 @@ const Home = () => {
       <video src={videoBg} autoPlay loop muted />
       <div className={style.contenedor}>
         <NavBar />
-        <div>
+        <div className={style.filtros}>
+
+          <div>
+          <span> Ordenar: </span>
           <select onChange={orderFilter}>
-            <option key='predef' value='predef'> Orden Predeterminado </option>
             <option key='ascendingName' value='ascendingName'>Ordenar por nombre A-Z </option>
             <option key='descendingName' value='descendingName'>Ordenar por nombre Z-A </option>
           </select>
+          </div>
 
-          <select onChange={originFilter}>
+          <div>
+          <span> Origen: </span>
+          <select onChange={originFilter }>
               <option value='all'>Mostar Todos</option>
               <option value='database'>Creados</option>
               <option value='api'>Obtenidos de la api</option>
           </select>
+          </div>
 
-          <select onChange={genderFilter}>
+          <div>
+          <span> Generos: </span>
+          <select onChange={genderFilter }>
             <option value='all'>Todos los Generos</option>
             {allGenres.map((item,index)=>{ return( <option key={index} value={item}> {item} </option>)})}
           </select>
+          </div>
 
-          <select onChange={platformsFilter}>
+          <div>
+          <span> Plataformas: </span>
+          <select onChange={platformsFilter }>
             <option value='all'>Todos las Plataformas</option>
             {allPlatforms.map((item,index)=>{ return( <option key={index} value={item}> {item} </option>)})}
           </select>
+          </div>
+
         </div>
 
         <div className= {style.paginate}>
@@ -83,7 +102,10 @@ const Home = () => {
                 </button>
               ))}
         </div>
-        <Cards allGames={juegos} />
+        {juegos.length === "No Hay videojuegos con ese nombre"
+        ? <h1> {juegos[0]} </h1> && setCurrentPage(1)
+        : <Cards allGames={juegos} /> 
+      }
       </div>
     </div>
   );
