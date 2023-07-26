@@ -23,7 +23,11 @@
 .contenedor h5{
     margin: 15px;
     font-size: 85%;
-    color:azure;
+    /* color:azure; */
+}
+
+.title {
+ color: aqua;
 }
 
 .contenedor img{

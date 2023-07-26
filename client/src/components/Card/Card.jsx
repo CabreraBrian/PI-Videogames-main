@@ -17,7 +17,7 @@ const Card = (params) => {
       </Link>
 
       <div>
-        <h5>{params.name}</h5>
+        <h5 className={style.title}>{params.name}</h5>
         <h5>{params.rating}/5⭐</h5>
         <h5>{params.releaseDate}</h5>
         {params.created === true ? <button className={style.close} onClick={handleClick}>Eliminar Juego</button> : null}

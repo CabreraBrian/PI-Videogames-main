@@ -259,7 +259,7 @@ const Create = () => {
             </select>
             {input.genres.length ? <button onClick={resetG}>X</button> : null}
           </div>
-          <p>{input.genres.join(", ")}</p>  
+          <p>{input.genres.join(" - ")}</p>  
           <span>{errors.genres}</span>
         </div>
       
@@ -271,7 +271,7 @@ const Create = () => {
             </select>
             { input.platforms.length ? <button onClick={resetP}>X</button> : null}
           </div>
-          <p>{input.platforms.join(", ")}</p>
+          <p>{input.platforms.join(" - ")}</p>
           <span>{errors.platforms}</span>
         </div>
 

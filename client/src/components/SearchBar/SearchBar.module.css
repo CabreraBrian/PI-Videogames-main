@@ -6,15 +6,17 @@
 }
 
 .contenedor input{
-    height: 25px;
+    height: 27px;
     border: 0px;
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .boton{
     padding: 6px;
     border: 0px;
-    border-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
     color: #023047;
     font-size: 15px;
     background: #FFB703;

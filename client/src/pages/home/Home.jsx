@@ -21,7 +21,7 @@ const Home = () => {
   const allGenres = useSelector((state) => state.allGenres);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const gamesForPage = 20;
+  const gamesForPage = 16;
 
   const lastGameIndex = currentPage * gamesForPage;
   const fisrtGameIndex = lastGameIndex - gamesForPage;
@@ -103,8 +103,8 @@ const Home = () => {
               ))}
         </div>
         {juegos.length === "No Hay videojuegos con ese nombre"
-        ? <h1> {juegos[0]} </h1> && setCurrentPage(1)
-        : <Cards allGames={juegos} /> 
+        ? <h1> {juegos[0]} </h1>
+        : <Cards allGames={juegos} />
       }
       </div>
     </div>

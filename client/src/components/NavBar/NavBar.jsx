@@ -2,17 +2,17 @@ import style from "./NavBar.module.css"
 import SearchBar from "../SearchBar/SearchBar.jsx"
 import { Link } from "react-router-dom"
 import logo from "../../assets/levelUp.png"
-// import {getIndieAndPlatforms} from "../../redux/actions"
-// import {useDispatch } from "react-redux"
+import {getIndieAndPlatforms} from "../../redux/actions"
+import {useDispatch } from "react-redux"
 
 const NavBar = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault()
-  //   dispatch(getIndieAndPlatforms())
-  // }
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    dispatch(getIndieAndPlatforms())
+  }
 
   return (
     <div className= {style.navBar}>

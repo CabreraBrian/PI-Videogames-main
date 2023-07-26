@@ -55,10 +55,14 @@
 .input button{
   width: 20px;
   height: 20px;
-  margin: 0px;
+  margin: 10px;
   border: 0px;
   border-radius: 100%;
   background-color: rgba(255, 0, 0, 0.5);
+}
+
+.input button:hover {
+  background-color: rgb(255, 0, 0);
 }
 
 .inputR{
