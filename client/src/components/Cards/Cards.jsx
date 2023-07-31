@@ -3,10 +3,14 @@ import Card from "../Card/Card.jsx"
 import Loading from "../Loading/Loading";
 
 const Cards = ({allGames}) => {
-
+    
     const gamesList = allGames
     return (
-        <div className= {style.contenedor}>
+
+        !gamesList.length 
+        ? <h1>No hay juegos</h1> 
+
+        : <div className= {style.contenedor}>
             {
                 gamesList.length 
                 ? gamesList.map((game) => {
@@ -30,6 +34,7 @@ const Cards = ({allGames}) => {
                 }):<Loading/>
             }
         </div>
+
     );
 };
 

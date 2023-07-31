@@ -37,8 +37,7 @@ const findVideogameByName = async (name)=>{
 
     if(allGamesFilteredByName.length) return allGamesFilteredByName;
     else return ["No Hay videojuegos con ese nombre"]
-
-    throw new Error("El videojuego no existe");
+    
 };
 
 module.exports = {findVideogameByName};

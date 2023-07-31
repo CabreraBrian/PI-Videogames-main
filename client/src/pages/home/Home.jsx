@@ -21,7 +21,7 @@ const Home = () => {
   const allGenres = useSelector((state) => state.allGenres);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const gamesForPage = 16;
+  const gamesForPage = 20;
 
   const lastGameIndex = currentPage * gamesForPage;
   const fisrtGameIndex = lastGameIndex - gamesForPage;
