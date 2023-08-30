@@ -14,7 +14,7 @@ const Home = () => {
     dispatch(getAllGames());
     dispatch(getAllGenres());
     dispatch(getAllPlatforms());
-  }, [dispatch]);
+  }, []);
 
   const allGames = useSelector((state) => state.allGamesCopy);
   const allPlatforms = useSelector((state) => state.allPlatforms);
