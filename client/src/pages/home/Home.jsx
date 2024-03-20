@@ -96,11 +96,13 @@ const Home = () => {
         </div>
 
         <div className= {style.paginate}>
+          <button onClick={()=> setCurrentPage(index - 1)}> izquierda </button>
           {allGames.length > gamesForPage && Array(Math.ceil(allGames.length / gamesForPage)).fill().map((_, index) => (
                 <button key={index} onClick={() => paginate(index + 1)}>
                   {index + 1}
                 </button>
               ))}
+          <button> derecha </button>
         </div>
         {juegos.length === "No Hay videojuegos con ese nombre"
         ? <h1> {juegos[0]} </h1>
